@@ -28,8 +28,25 @@ function compute_recommendation() {
     }
 }
 
+function loss_type_change() {
+    //When loss type selection changes, need to re-enable/disable all of the BC inputs
+
+    const loss_type = document.getElementById('loss_type').value;
+    for (const ear of ['left','right']) {
+        for (const f of freqs) {
+            if (loss_type === 'sensorineural') {
+                document.getElementById(ear + "_bc_" + f).setAttribute('disabled','');
+            }
+            else if (loss_type === 'mixed') {
+                document.getElementById(ear+'_bc_'+f).removeAttribute('disabled');
+            }
+        }
+    }
+}
+
 //Need to create the table for inputting data
 function generate_table() {
+    const loss_type = document.getElementById('loss_type').value;
     const table = document.getElementById('input');
     const table_header = document.getElementById('input_header');
     for (const f of freqs) {
@@ -47,6 +64,9 @@ function generate_table() {
                 const db_input = document.createElement("input");
                 db_input.setAttribute("type","text");
                 db_input.setAttribute("id", ear+"_"+type+"_"+f);
+                if (loss_type === 'sensorineural' && type == 'bc') {
+                    db_input.setAttribute('disabled','');
+                }
                 new_cell = document.createElement("td");
                 new_cell.appendChild(db_input);
                 new_row.appendChild(new_cell);
