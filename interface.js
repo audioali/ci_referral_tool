@@ -31,6 +31,7 @@ function compute_recommendation() {
 function loss_type_change() {
     //When loss type selection changes, need to re-enable/disable all of the BC inputs
 
+    clear_output();
     const loss_type = document.getElementById('loss_type').value;
     for (const ear of ['left','right']) {
         for (const f of freqs) {
@@ -44,6 +45,12 @@ function loss_type_change() {
             }
         }
     }
+}
+
+function clear_output() {
+    //Whenever user input changes, want to wipe old output, to prevent possible confusion
+
+    document.getElementById('output').textContent = '';
 }
 
 //Need to create the table for inputting data
@@ -69,6 +76,7 @@ function generate_table() {
                 if (loss_type === 'sensorineural' && type == 'bc') {
                     db_input.setAttribute('disabled','');
                 }
+                db_input.setAttribute("onChange", "clear_output()");
                 new_cell = document.createElement("td");
                 new_cell.appendChild(db_input);
                 new_row.appendChild(new_cell);
