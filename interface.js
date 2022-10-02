@@ -53,7 +53,7 @@ function generate_table() {
     const table_header = document.getElementById('input_header');
     for (const f of freqs) {
         const col_header = document.createElement("th");
-        col_header.textContent = f;
+        col_header.textContent = f + " kHz";
         table_header.appendChild(col_header);
     }
     for (const ear of ['left','right']) {

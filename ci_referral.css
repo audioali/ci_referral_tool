@@ -1,3 +1,7 @@
+.referral_tool {
+    margin: 20px;
+}
+
 .loss_type_dropdown {
     background-color: none;
     width: 30%;
@@ -9,4 +13,13 @@
 
 .submit_button {
     background-color: none;
+    width: 30%;
+}
+
+.submit_button > button {
+    background-color: rgb(36, 204, 39);
+}
+
+.submit_button > button:hover {
+    background-color: rgb(3, 76, 5)
 }
