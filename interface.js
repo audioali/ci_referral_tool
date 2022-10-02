@@ -1,24 +1,31 @@
 const freqs = ['0.25','0.5','1','2','3','4','8'];
 
 function compute_recommendation() {
-    let test_results = {left: {ac: {}, bc: {}}, right: {ac: {}, bc: {}}};
-    for (const ear of ['left','right']) {
-        for (const type of ['ac','bc']) {
-            for (const freq of freqs) {
-                const result = document.getElementById(ear+'_'+type+'_'+freq);
-                if (result.value !== '') {
-                    if (result.value === 'NR') {
-                        test_results[ear][type][freq] = null; //Using null to mean 'not reached'
-                    }
-                    else {
-                        test_results[ear][type][freq] = parseInt(result.value);
+    try {
+        let test_results = {left: {ac: {}, bc: {}}, right: {ac: {}, bc: {}}};
+        for (const ear of ['left','right']) {
+            for (const type of ['ac','bc']) {
+                for (const freq of freqs) {
+                    const result = document.getElementById(ear+'_'+type+'_'+freq);
+                    if (result.value !== '') {
+                        if (result.value === 'NR') {
+                            test_results[ear][type][freq] = null; //Using null to mean 'not reached'
+                        }
+                        else {
+                            test_results[ear][type][freq] = parseInt(result.value);
+                        }
                     }
                 }
             }
         }
+        test_results.loss_type = document.getElementById('loss_type').value;
+        const output = document.getElementById('output');
+        output.textContent = process_results(test_results);
     }
-    const output = document.getElementById('output');
-    output.textContent = process_results(test_results);
+    catch (err) {
+        const output = document.getElementById('output');
+        output.textContent = "An unexpected error occurred";
+    }
 }
 
 //Need to create the table for inputting data
