@@ -35,7 +35,9 @@ function loss_type_change() {
     for (const ear of ['left','right']) {
         for (const f of freqs) {
             if (loss_type === 'sensorineural') {
-                document.getElementById(ear + "_bc_" + f).setAttribute('disabled','');
+                const db_input = document.getElementById(ear + "_bc_" + f)
+                db_input.setAttribute('disabled','');
+                db_input.value = '';
             }
             else if (loss_type === 'mixed') {
                 document.getElementById(ear+'_bc_'+f).removeAttribute('disabled');
