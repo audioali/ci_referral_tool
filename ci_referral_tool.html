@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <script src="referral_logic.js"></script>
+        <script src="interface.js"></script>
+    </head>
+    <body>
+        <div className="table_input">
+            <table id="input">
+                <tr id="input_header">
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+        <script>generate_table();</script>
+        <div className="submit_button">
+            <button onClick="compute_recommendation()">Submit</button>
+        </div>
+        <div id="output" className="output"></div>
+    </body>
+</html>
