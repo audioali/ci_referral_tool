@@ -7,12 +7,12 @@ function validate_input(test_results) {
             for (const freq in test_results[ear][type]) {
                 if ((test_results[ear][type][freq] !== null)) { //null used to represent 'no response' at given frequency
                     try {
-                        const point = parseInt(test_results[ear][type][freq]);
-                        if ((point === NaN) || (point % interval !== 0) || (point < limits[type][0]) || (point > limits[type][1])) {
+                        const point = test_results[ear][type][freq];
+                        if ((!Number.isInteger(point)) || (point % interval !== 0) || (point < limits[type][0]) || (point > limits[type][1])) {
                             return {valid: false, problem: [ear,type,freq]};
                         }
                     }
-                    catch(err) { //If string can't be converted to int, then input invalid
+                    catch(err) {
                         return {valid: false, problem: [ear,type,freq]};
                     }
                 }
