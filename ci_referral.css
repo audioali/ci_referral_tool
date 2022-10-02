@@ -7,8 +7,8 @@
     width: 30%;
 }
 
-.input_table {
-    background-color: none;
+.input_table > table {
+    width: 50%;
 }
 
 .submit_button {
@@ -22,4 +22,9 @@
 
 .submit_button > button:hover {
     background-color: rgb(3, 76, 5)
+}
+
+.db_input:not([type=checkbox],[type=radio],[type=range]) {
+    height: 10px;
+    width: 100px;
 }

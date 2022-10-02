@@ -73,6 +73,7 @@ function generate_table() {
                 const db_input = document.createElement("input");
                 db_input.setAttribute("type","text");
                 db_input.setAttribute("id", ear+"_"+type+"_"+f);
+                db_input.setAttribute("class", "db_input");
                 if (loss_type === 'sensorineural' && type == 'bc') {
                     db_input.setAttribute('disabled','');
                 }
