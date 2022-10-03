@@ -28,3 +28,7 @@
     height: 10px;
     width: 100px;
 }
+
+.container {
+    max-width: 1200;
+}
