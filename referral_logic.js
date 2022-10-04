@@ -74,7 +74,7 @@ function process_results(test_results) {
         return "May be suitable for CI referral. Next step: AB speech test.";
     }
     else if (test_results.loss_type === 'mixed') {
-        if ((check_threshold_count(test_results, 'left', 'bc', ['0.5','1','2','3','4'], 1000) > 1) && (check_threshold_count(test_results, 'right', 'bc', ['0.5','1','2','3','4'], 1000) > 1)) {
+        if ((check_threshold_count(test_results, 'left', 'bc', ['0.5','1','2','3','4'], 55) > 1) && (check_threshold_count(test_results, 'right', 'bc', ['0.5','1','2','3','4'], 55) > 1)) {
             return "May be suitable for CI referral. Next step: AB speech test.";
         }
         return "Consider ENT/BAHA referral.";
