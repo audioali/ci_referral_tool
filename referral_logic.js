@@ -63,7 +63,7 @@ function process_results(test_results) {
         }
     }
 
-    if ((check_threshold_count(test_results, 'left', 'ac', ['0.5','1','2','3','4'], 80) < 2) && (check_threshold_count(test_results, 'right', 'ac', ['0.5','1','2','3','4'], 80) < 2)) {
+    if ((check_threshold_count(test_results, 'left', 'ac', ['0.5','1','2','3','4'], 80) < 2) || (check_threshold_count(test_results, 'right', 'ac', ['0.5','1','2','3','4'], 80) < 2)) {
         return "Not suitable for CI unless dead regions suspected and AB speech test scores below 50%";
     }
 
