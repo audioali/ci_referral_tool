@@ -1,4 +1,4 @@
-const freqs = ['0.25','0.5','1','2','3','4','8'];
+const freqs = ['0.5','1','2','3','4'];
 
 function compute_recommendation() {
     try {
@@ -84,5 +84,24 @@ function generate_table() {
             }
             table.appendChild(new_row);
         }
+    }
+}
+
+
+// This function for collapsible boxes is taken from here: https://www.w3schools.com/howto/howto_js_collapsible.asp
+function add_faq_listeners() {
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
     }
 }

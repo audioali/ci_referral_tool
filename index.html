@@ -35,8 +35,18 @@
             <script>generate_table();</script>
             <div class="submit_button">
                 <button onClick="compute_recommendation()">Submit</button>
+            </div><br><br><br>
+            <div class="faq">
+                <h4>FAQ</h4>
+                        <button type="button" class="collapsible">Why can I not enter results at other frequencies?</button>
+                        <div class="content">
+                            <p>The NICE referral guidelines only refer to frequencies 0.5,1,2,3,4Khz. The patient's hearing at other frequencies can be at any level, normal through to profound.</p>
+                        </div>
             </div>
-            <footer><small>Disclaimer: This is an experimental tool, still under development. Do not use for clinical decisions!</small></footer>
+            <script>add_faq_listeners()</script>
+            <footer>
+                <small>Disclaimer: This is an experimental tool, still under development. Do not use for clinical decisions!</small>
+            </footer>
         </main>
     </body>
 </html>
