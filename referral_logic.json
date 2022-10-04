@@ -1,0 +1,63 @@
+{
+    "requirements": {
+        "sensorineural": {
+            "left": {
+                "ac": ["0.5","1","2","3","4"]
+            },
+            "right": {
+                "ac": ["0.5","1","2","3","4"]
+            }
+        },
+        "mixed": {
+            "left": {
+                "ac": ["0.5","1","2","3","4"],
+                "bc": ["0.5","1","2","3","4"]
+            },
+            "right": {
+                "ac": ["0.5","1","2","3","4"],
+                "bc": ["0.5","1","2","3","4"]
+            }
+        }
+    },
+
+    "referral_rules": [
+        {
+            "loss_type": "any",
+            "transducer": "ac",
+            "frequencies": ["0.5","1","2","3","4"],
+            "condition": "less than",
+            "limit": 2,
+            "at_or_above": 80,
+            "ear": "either",
+            "result": "Not suitable for CI unless dead regions suspected and AB speech test scores below 50%"
+        },
+        {
+            "loss_type": "sensorineural",
+            "transducer": "ac",
+            "frequencies": ["2","3","4"],
+            "condition": "greater than",
+            "limit": 2,
+            "at_or_above": 95,
+            "ear": "both",
+            "result": "Likely suitable for CI referral. If hearing without visual cues then consider AB speech test, if not consider CI referral."
+        },
+        {
+            "loss_type": "sensorineural",
+            "result": "May be suitable for CI referral. Next step: AB speech test."
+        },
+        {
+            "loss_type": "mixed",
+            "transducer": "bc",
+            "frequencies": ["0.5","1","2","3","4"],
+            "condition": "greater than",
+            "limit": 1,
+            "at_or_above": 55,
+            "ear": "both",
+            "result": "May be suitable for CI referral. Next step: AB speech test."
+        },
+        {
+            "loss_type": "mixed",
+            "result": "Consider ENT/BAHA referral."
+        }
+    ]
+}
