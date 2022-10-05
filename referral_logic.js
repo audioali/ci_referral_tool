@@ -45,7 +45,7 @@ function check_threshold_count(test_results, ear, type, freqs, threshold) {
 function process_results(test_results, logic) {
     const validity = validate_input(test_results);
     if (!validity.valid) {
-        return "Invalid input for " + validity.problem[0] + " " + validity.problem[1] + " " + validity.problem[2];
+        return ["Invalid input for " + validity.problem[0] + " " + validity.problem[1] + " " + validity.problem[2]];
     }
 
     //First need to check we have enough data to run the tool (distinct from input validation above, which checks individual inputs are of correct format)
@@ -55,7 +55,7 @@ function process_results(test_results, logic) {
                 if (logic.requirements[test_results.loss_type][ear][type] !== undefined) {
                     for (const freq of logic.requirements[test_results.loss_type][ear][type]) {
                         if (test_results[ear][type][freq] === undefined) {
-                            return "Must provide value for " + ear + " " + type + " at " + freq + "kHz to use this tool";
+                            return ["Must provide value for " + ear + " " + type + " at " + freq + "kHz to use this tool"];
                         }
                     }
                 }
@@ -66,7 +66,7 @@ function process_results(test_results, logic) {
     for (const rule of logic.referral_rules) {
         if (rule.loss_type === 'any' || rule.loss_type === test_results.loss_type) {
             if (rule.at_or_above === undefined) { //No further threshold conditions to test
-                return rule.result;
+                return [rule.result, rule.reason];
             }
             let checks = [];
             for (const ear of ['left','right']) {
@@ -87,12 +87,12 @@ function process_results(test_results, logic) {
             }
             if (rule.ear === 'either') {
                 if (checks[0] || checks[1]) {
-                    return rule.result
+                    return [rule.result, rule.reason];
                 }
             }
             else if (rule.ear === 'both') {
                 if (checks[0] && checks[1]) {
-                    return rule.result
+                    return [rule.result, rule.reason];
                 }
             }
             else {

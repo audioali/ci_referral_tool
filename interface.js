@@ -2,6 +2,8 @@ const freqs = ['0.5','1','2','3','4'];
 
 const referral_logic_query = fetch('referral_logic.json').then((response) => response.json());
 
+let reason = ''; //Used to store reason behind active recommendation
+
 async function compute_recommendation() {
     try {
         let test_results = {left: {ac: {}, bc: {}}, right: {ac: {}, bc: {}}};
@@ -23,7 +25,13 @@ async function compute_recommendation() {
         test_results.loss_type = document.getElementById('loss_type').value;
         const output = document.getElementById('output');
         const referral_logic = await referral_logic_query;
-        output.textContent = process_results(test_results, referral_logic);
+        const decision = process_results(test_results, referral_logic);
+        output.textContent = decision[0];
+        reason = ''; //To ensure old reason is wiped as soon as decision changes
+        if (decision.length > 1) {
+            reason = decision[1];
+            document.getElementById('reason').style.display = 'block';
+        }
     }
     catch (err) {
         const output = document.getElementById('output');
@@ -56,6 +64,13 @@ function clear_output() {
     //Whenever user input changes, want to wipe old output, to prevent possible confusion
 
     document.getElementById('output').textContent = '';
+    document.getElementById('reason').style.display = 'none';
+}
+
+function explain() {
+    //Opens popup explaining reason behind decision
+
+    alert(reason);
 }
 
 //Need to create the table for inputting data
