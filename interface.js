@@ -1,6 +1,8 @@
 const freqs = ['0.5','1','2','3','4'];
 
-function compute_recommendation() {
+const referral_logic_query = fetch('referral_logic.json').then((response) => response.json());
+
+async function compute_recommendation() {
     try {
         let test_results = {left: {ac: {}, bc: {}}, right: {ac: {}, bc: {}}};
         for (const ear of ['left','right']) {
@@ -20,10 +22,13 @@ function compute_recommendation() {
         }
         test_results.loss_type = document.getElementById('loss_type').value;
         const output = document.getElementById('output');
-        output.textContent = process_results(test_results);
+        const referral_logic = await referral_logic_query;
+        output.textContent = process_results(test_results, referral_logic);
     }
     catch (err) {
         const output = document.getElementById('output');
+        console.log(referral_logic);
+        console.log(err);
         output.textContent = "An unexpected error occurred";
     }
 }
