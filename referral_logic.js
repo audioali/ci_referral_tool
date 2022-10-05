@@ -23,7 +23,7 @@ function validate_input(test_results) {
 }
 
 function check_threshold_count(test_results, ear, type, freqs, threshold) {
-    //For ear ('left' or 'right'), type ('ac' or 'bc'), freqs (kHz but as string), and a threshold (int, dB)
+    //For ear ('left' or 'right'), type ('ac' or 'bc'), freqs (list, kHz but as string), and a threshold (int, dB)
     //this function returns how many of those frequencies are at the threshold or worse
 
     let threshold_count = 0;
@@ -42,43 +42,63 @@ function check_threshold_count(test_results, ear, type, freqs, threshold) {
     return threshold_count;
 }
 
-function process_results(test_results) {
+function process_results(test_results, logic) {
     const validity = validate_input(test_results);
     if (!validity.valid) {
-        return "Invalid input for " + validity.problem[0] + " " + validity.problem[1] + " " + validity.problem[2];
+        return ["Invalid input for " + validity.problem[0] + " " + validity.problem[1] + " " + validity.problem[2]];
     }
 
     //First need to check we have enough data to run the tool (distinct from input validation above, which checks individual inputs are of correct format)
-    for (const f of ['0.5','1','2','3','4']) {
-        for (const ear of ['left','right']) {
-            let types = ['ac'];
-            if (test_results.loss_type === 'mixed') {
-                types.push('bc'); //If 'mixed' need to have BC points too
-            }
-            for (const type of types) {
-                if (test_results[ear][type][f] === undefined) {
-                    return "Must provide value for " + ear + " " + type + " at " + f + "kHz to use this tool";
+    for (const ear of ['left','right']) {
+        if (logic.requirements[test_results.loss_type][ear] !== undefined) {
+            for (const type of ['ac','bc']) {
+                if (logic.requirements[test_results.loss_type][ear][type] !== undefined) {
+                    for (const freq of logic.requirements[test_results.loss_type][ear][type]) {
+                        if (test_results[ear][type][freq] === undefined) {
+                            return ["Must provide value for " + ear + " " + type + " at " + freq + "kHz to use this tool"];
+                        }
+                    }
                 }
             }
         }
     }
 
-    if ((check_threshold_count(test_results, 'left', 'ac', ['0.5','1','2','3','4'], 80) < 2) || (check_threshold_count(test_results, 'right', 'ac', ['0.5','1','2','3','4'], 80) < 2)) {
-        return "Not suitable for CI unless dead regions suspected and AB speech test scores below 50%";
-    }
-
-    if (test_results.loss_type === 'sensorineural') {
-        if ((check_threshold_count(test_results, 'left', 'ac', ['2','3','4'], 95) == 3) && (check_threshold_count(test_results, 'right', 'ac', ['2','3','4'], 95) == 3)) {
-            return "Likely suitable for CI referral. If hearing without visual cues then consider AB speech test, if not consider CI referral.";
+    for (const rule of logic.referral_rules) {
+        if (rule.loss_type === 'any' || rule.loss_type === test_results.loss_type) {
+            if (rule.at_or_above === undefined) { //No further threshold conditions to test
+                return [rule.result, rule.reason];
+            }
+            let checks = [];
+            for (const ear of ['left','right']) {
+                checks.push(check_threshold_count(test_results, ear, rule.transducer, rule.frequencies, rule.at_or_above));
+            }
+            if (rule.condition === 'greater than') {
+                for (let i = 0;i < 2;i++) {
+                    checks[i] = checks[i] > rule.limit;
+                }
+            }
+            else if (rule.condition === 'less than') {
+                for (let i = 0;i < 2;i++) {
+                    checks[i] = checks[i] < rule.limit;
+                }
+            }
+            else {
+                throw "Unexpected condition in referral logic";
+            }
+            if (rule.ear === 'either') {
+                if (checks[0] || checks[1]) {
+                    return [rule.result, rule.reason];
+                }
+            }
+            else if (rule.ear === 'both') {
+                if (checks[0] && checks[1]) {
+                    return [rule.result, rule.reason];
+                }
+            }
+            else {
+                throw "Unexpected condition ear value in referral logic";
+            }
         }
-        return "May be suitable for CI referral. Next step: AB speech test.";
     }
-    else if (test_results.loss_type === 'mixed') {
-        if ((check_threshold_count(test_results, 'left', 'bc', ['0.5','1','2','3','4'], 1000) > 1) && (check_threshold_count(test_results, 'right', 'bc', ['0.5','1','2','3','4'], 1000) > 1)) {
-            return "May be suitable for CI referral. Next step: AB speech test.";
-        }
-        return "Consider ENT/BAHA referral.";
-    }
-
-    throw "Unexpected loss type";
+    throw "Bad referral logic - no rules satisfied";
 }
