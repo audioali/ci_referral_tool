@@ -7,12 +7,16 @@
         <title>CI Referral Tool</title>
     </head>
     <body>
-        <div class="referral_tool">
+        <main class="container">
+
+        <header>
             <h1>CI Referral Tool (Experimental)</h1>
             <p>
                 This tool is intended as a guide for referring clinicians. If you want further guidance on a particular case, contact your local CI team.<br>
                 Enter hearing test results below. If threshold not reached, type 'NR' in the appropriate box.
             </p>
+        </header>
+
             <div class="loss_type_dropdown">
                 <label>Hearing loss type:</label>
                 <select id="loss_type" value="sensorineural" onChange="loss_type_change()">
@@ -20,7 +24,7 @@
                     <option value="mixed">mixed</option>
                 </select>
             </div>
-            <b><div id="output" class="output"></div></b><br><br>
+            <b><div id="output" class="output"></div> <div id="reason" class="reason" onclick="explain()"><a href="#">Why?</a></div></b><br><br>
             <div class="input_table">
                 <table id="input">
                     <tr id="input_header">
@@ -30,8 +34,19 @@
             </div>
             <script>generate_table();</script>
             <div class="submit_button">
-                <button onClick="compute_recommendation()">Submit</button>
+                <button onclick="compute_recommendation()">Submit</button>
+            </div><br><br><br>
+            <div class="faq">
+                <h4>FAQ</h4>
+                        <button type="button" class="collapsible">Why can I not enter results at other frequencies?</button>
+                        <div class="content">
+                            <p>The NICE referral guidelines only refer to frequencies 0.5,1,2,3,4Khz. The patient's hearing at other frequencies can be at any level, normal through to profound.</p>
+                        </div>
             </div>
-        </div>
+            <script>add_faq_listeners()</script>
+            <footer>
+                <small>Disclaimer: This is an experimental tool, still under development. Do not use for clinical decisions!</small>
+            </footer>
+        </main>
     </body>
 </html>
