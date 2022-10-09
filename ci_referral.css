@@ -1,32 +1,88 @@
+body {
+    background: #222224;
+    color: white;
+    margin: auto;
+    width: 50em;
+    font-family: system-ui,-apple-system,"Segoe UI","Roboto","Ubuntu","Cantarell","Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"
+}
+
+select {
+    margin-left: 1em;
+    padding: 4px;
+}
+
+td {
+    text-align: right;
+}
+
 .referral_tool {
     margin: 20px;
 }
 
 .loss_type_dropdown {
-    background-color: none;
-    width: 30%;
-}
-
-.input_table > table {
-    width: 50%;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .submit_button {
-    background-color: none;
-    width: 30%;
-}
-
-.submit_button > button {
+    margin-top: 0.7em;
+    padding: 3px 18px 3px 18px;
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
     background-color: rgb(36, 204, 39);
+    color: black;
 }
 
-.submit_button > button:hover {
+.submit_button:hover {
+    color: white;
     background-color: rgb(3, 76, 5)
 }
 
+.right {
+    color: #FCC;
+}
+
+.left {
+    color: #CCF;
+}
+
 .db_input:not([type=checkbox],[type=radio],[type=range]) {
-    height: 10px;
-    width: 100px;
+    height: 3ex;
+    width: 8em;
+    margin: 3px;
+}
+
+input.left {
+    color: #009;
+}
+
+input.right {
+    color: #900;
+}
+
+.output {
+    font-size: larger;
+    background: #EEF;
+    color: black;
+    border-radius: 10px;
+    margin-top: 1.5em;
+}
+
+#output {
+    padding: 1em;
+}
+
+footer {
+    margin-top: 1em;
+}
+
+.hidden {
+    visibility: hidden;
 }
 
 .container {
@@ -59,8 +115,10 @@
   
   /* Style the collapsible content. Note: hidden by default */
   .content {
-    padding: 0 18px;
     display: none;
+    padding: 0 10px 0 10px;
     overflow: hidden;
     background-color: #f1f1f1;
+    color: black;
+    width: inherit;
   }

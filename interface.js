@@ -5,6 +5,7 @@ const referral_logic_query = fetch('referral_logic.json').then((response) => res
 let reason = ''; //Used to store reason behind active recommendation
 
 async function compute_recommendation() {
+    const output_msg = document.getElementById('output_msg')
     try {
         let test_results = {left: {ac: {}, bc: {}}, right: {ac: {}, bc: {}}};
         for (const ear of ['left','right']) {
@@ -23,10 +24,9 @@ async function compute_recommendation() {
             }
         }
         test_results.loss_type = document.getElementById('loss_type').value;
-        const output = document.getElementById('output');
         const referral_logic = await referral_logic_query;
         const decision = process_results(test_results, referral_logic);
-        output.textContent = decision[0];
+        output_msg.textContent = decision[0];
         reason = ''; //To ensure old reason is wiped as soon as decision changes
         if (decision.length > 1) {
             reason = decision[1];
@@ -34,11 +34,11 @@ async function compute_recommendation() {
         }
     }
     catch (err) {
-        const output = document.getElementById('output');
         console.log(referral_logic);
         console.log(err);
-        output.textContent = "An unexpected error occurred";
+        output_msg.textContent = "An unexpected error occurred";
     }
+    document.getElementById('output').setAttribute('class', 'output')
 }
 
 function loss_type_change() {
@@ -63,7 +63,8 @@ function loss_type_change() {
 function clear_output() {
     //Whenever user input changes, want to wipe old output, to prevent possible confusion
 
-    document.getElementById('output').textContent = '';
+    const output = document.getElementById('output');
+    output.setAttribute('class', 'hidden')
     document.getElementById('reason').style.display = 'none';
 }
 
@@ -88,12 +89,14 @@ function generate_table() {
             const new_row = document.createElement("tr");
             const row_title = document.createElement("td");
             row_title.textContent = ear + " " + type;
+            row_title.setAttribute("nowrap", "nowrap")
+            row_title.setAttribute("class", ear)
             new_row.appendChild(row_title);
             for (const f of freqs) {
                 const db_input = document.createElement("input");
                 db_input.setAttribute("type","text");
                 db_input.setAttribute("id", ear+"_"+type+"_"+f);
-                db_input.setAttribute("class", "db_input");
+                db_input.setAttribute("class", ear+" db_input");
                 if (loss_type === 'sensorineural' && type == 'bc') {
                     db_input.setAttribute('disabled','');
                 }
@@ -106,7 +109,6 @@ function generate_table() {
         }
     }
 }
-
 
 // This function for collapsible boxes is taken from here: https://www.w3schools.com/howto/howto_js_collapsible.asp
 function add_faq_listeners() {
