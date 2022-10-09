@@ -1,6 +1,7 @@
 const freqs = ['0.25','0.5','1','2','3','4','8'];
 
 function compute_recommendation() {
+    const output = document.getElementById('output');
     try {
         let test_results = {left: {ac: {}, bc: {}}, right: {ac: {}, bc: {}}};
         for (const ear of ['left','right']) {
@@ -19,13 +20,12 @@ function compute_recommendation() {
             }
         }
         test_results.loss_type = document.getElementById('loss_type').value;
-        const output = document.getElementById('output');
         output.textContent = process_results(test_results);
     }
     catch (err) {
-        const output = document.getElementById('output');
         output.textContent = "An unexpected error occurred";
     }
+    output.setAttribute('class', 'output')
 }
 
 function loss_type_change() {
@@ -50,7 +50,9 @@ function loss_type_change() {
 function clear_output() {
     //Whenever user input changes, want to wipe old output, to prevent possible confusion
 
-    document.getElementById('output').textContent = '';
+    const output = document.getElementById('output');
+    output.textContent = '';
+    output.setAttribute('class', 'hidden')
 }
 
 //Need to create the table for inputting data
@@ -68,12 +70,14 @@ function generate_table() {
             const new_row = document.createElement("tr");
             const row_title = document.createElement("td");
             row_title.textContent = ear + " " + type;
+            row_title.setAttribute("nowrap", "nowrap")
+            row_title.setAttribute("class", ear)
             new_row.appendChild(row_title);
             for (const f of freqs) {
                 const db_input = document.createElement("input");
                 db_input.setAttribute("type","text");
                 db_input.setAttribute("id", ear+"_"+type+"_"+f);
-                db_input.setAttribute("class", "db_input");
+                db_input.setAttribute("class", ear+" db_input");
                 if (loss_type === 'sensorineural' && type == 'bc') {
                     db_input.setAttribute('disabled','');
                 }
