@@ -2,7 +2,8 @@ body {
     background: #222224;
     color: white;
     margin: auto;
-    width: fit-content;
+    width: 50em;
+    font-family: system-ui,-apple-system,"Segoe UI","Roboto","Ubuntu","Cantarell","Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"
 }
 
 select {
@@ -69,12 +70,55 @@ input.right {
     background: #EEF;
     color: black;
     border-radius: 10px;
+    margin-top: 1.5em;
 }
 
 #output {
     padding: 1em;
 }
 
+footer {
+    margin-top: 1em;
+}
+
 .hidden {
     visibility: hidden;
 }
+
+.container {
+    max-width: 1200;
+}
+
+.reason {
+    display: none;
+}
+
+/* Collapsible button styling taken from here https://www.w3schools.com/howto/howto_js_collapsible.asp
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  .active, .collapsible:hover {
+    background-color: #ccc;
+  }
+  
+  /* Style the collapsible content. Note: hidden by default */
+  .content {
+    display: none;
+    padding: 0 10px 0 10px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    color: black;
+    width: inherit;
+  }

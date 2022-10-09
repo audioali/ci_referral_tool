@@ -1,7 +1,11 @@
-const freqs = ['0.25','0.5','1','2','3','4','8'];
+const freqs = ['0.5','1','2','3','4'];
 
-function compute_recommendation() {
-    const output = document.getElementById('output');
+const referral_logic_query = fetch('referral_logic.json').then((response) => response.json());
+
+let reason = ''; //Used to store reason behind active recommendation
+
+async function compute_recommendation() {
+    const output_msg = document.getElementById('output_msg')
     try {
         let test_results = {left: {ac: {}, bc: {}}, right: {ac: {}, bc: {}}};
         for (const ear of ['left','right']) {
@@ -20,12 +24,21 @@ function compute_recommendation() {
             }
         }
         test_results.loss_type = document.getElementById('loss_type').value;
-        output.textContent = process_results(test_results);
+        const referral_logic = await referral_logic_query;
+        const decision = process_results(test_results, referral_logic);
+        output_msg.textContent = decision[0];
+        reason = ''; //To ensure old reason is wiped as soon as decision changes
+        if (decision.length > 1) {
+            reason = decision[1];
+            document.getElementById('reason').style.display = 'block';
+        }
     }
     catch (err) {
-        output.textContent = "An unexpected error occurred";
+        console.log(referral_logic);
+        console.log(err);
+        output_msg.textContent = "An unexpected error occurred";
     }
-    output.setAttribute('class', 'output')
+    document.getElementById('output').setAttribute('class', 'output')
 }
 
 function loss_type_change() {
@@ -51,8 +64,14 @@ function clear_output() {
     //Whenever user input changes, want to wipe old output, to prevent possible confusion
 
     const output = document.getElementById('output');
-    output.textContent = '';
     output.setAttribute('class', 'hidden')
+    document.getElementById('reason').style.display = 'none';
+}
+
+function explain() {
+    //Opens popup explaining reason behind decision
+
+    alert(reason);
 }
 
 //Need to create the table for inputting data
@@ -88,5 +107,23 @@ function generate_table() {
             }
             table.appendChild(new_row);
         }
+    }
+}
+
+// This function for collapsible boxes is taken from here: https://www.w3schools.com/howto/howto_js_collapsible.asp
+function add_faq_listeners() {
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
     }
 }
