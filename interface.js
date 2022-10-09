@@ -34,7 +34,6 @@ async function compute_recommendation() {
         }
     }
     catch (err) {
-        console.log(referral_logic);
         console.log(err);
         output_msg.textContent = "An unexpected error occurred";
     }
