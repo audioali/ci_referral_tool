@@ -77,7 +77,7 @@
             "condition": "less than",
             "limit": 2,
             "at_or_above": -1000,
-            "ear": "both",
+            "ear": "either",
             "result": "May be more suitable for BAHA. Consider testing BC at 3&4kHz for more information.",
             "reason": "If BC thesholds are at or above 55 dB at higher frequencies they may still be suitable for CI. If thresholds are better than this then BAHA may be more suitable."
         },
