@@ -71,12 +71,13 @@
             "reason": "Meets NICE criteria of at least two thresholds at 80 dB or above in both ears, and are unlikely to be suitable for a BAHA because BC thresholds are too poor (more than one threshold at or above 55 dB in both ears). However, they may be hearing speech well enough with hearing aids. Guidelines suggest using AB speech test."
         },
         {
-            "loss type": "mixed",
+            "loss_type": "mixed",
             "transducer": "bc",
             "frequencies": ["3","4"],
             "condition": "less than",
             "limit": 2,
             "at_or_above": -1000,
+            "ear": "both",
             "result": "May be more suitable for BAHA. Consider testing BC at 3&4kHz for more information.",
             "reason": "If BC thesholds are at or above 55 dB at higher frequencies they may still be suitable for CI. If thresholds are better than this then BAHA may be more suitable."
         },
