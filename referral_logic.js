@@ -37,7 +37,7 @@ function check_threshold_count(test_results, ear, type, freqs, threshold, at_or_
                     threshold_count += 1;
                 }
             }
-            else {
+            else if (at_or_above) {
                 threshold_count += 1; //null means 'not reached', counts as worse than threshold
             }
         }
