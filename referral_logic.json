@@ -83,7 +83,7 @@
         },
         {
             "loss_type": "mixed",
-            "result": "May be suitable for CI or BAHA may be more appropriate. Next step: test BC at both 3&4kHz to assess high frequency hearing.",
+            "result": "May be suitable for CI or BAHA may be more appropriate. Next step: test BC at both 3&4kHz in both ears to assess high frequency hearing.",
             "reason": "If BC thesholds are at or above 55 dB at 3&4kHz they may still be suitable for CI. If thresholds are better than this then BAHA may be more suitable."
         }
     ]
