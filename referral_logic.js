@@ -22,7 +22,7 @@ function validate_input(test_results) {
     return {valid: true};
 }
 
-function check_threshold_count(test_results, ear, type, freqs, threshold) {
+function check_threshold_count(test_results, ear, type, freqs, threshold, at_or_above) {
     //For ear ('left' or 'right'), type ('ac' or 'bc'), freqs (list, kHz but as string), and a threshold (int, dB)
     //this function returns how many of those frequencies are at the threshold or worse
 
@@ -30,7 +30,10 @@ function check_threshold_count(test_results, ear, type, freqs, threshold) {
     for (const f of freqs) {
         if (test_results[ear][type][f] !== undefined) {
             if (test_results[ear][type][f] !== null) {
-                if (test_results[ear][type][f] >= threshold) {
+                if (test_results[ear][type][f] >= threshold && at_or_above) {
+                    threshold_count += 1;
+                }
+                else if (test_results[ear][type][f] < threshold && (!at_or_above)) {
                     threshold_count += 1;
                 }
             }
@@ -65,12 +68,17 @@ function process_results(test_results, logic) {
 
     for (const rule of logic.referral_rules) {
         if (rule.loss_type === 'any' || rule.loss_type === test_results.loss_type) {
-            if (rule.at_or_above === undefined) { //No further threshold conditions to test
+            if (rule.at_or_above === undefined && rule.below === undefined) { //No further threshold conditions to test
                 return [rule.result, rule.reason];
             }
             let checks = [];
             for (const ear of ['left','right']) {
-                checks.push(check_threshold_count(test_results, ear, rule.transducer, rule.frequencies, rule.at_or_above));
+                if (rule.at_or_above !== undefined) {
+                    checks.push(check_threshold_count(test_results, ear, rule.transducer, rule.frequencies, rule.at_or_above, true));
+                }
+                else {
+                    checks.push(check_threshold_count(test_results, ear, rule.transducer, rule.frequencies, rule.below, false));
+                }
             }
             if (rule.condition === 'greater than') {
                 for (let i = 0;i < 2;i++) {
