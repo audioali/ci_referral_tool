@@ -84,18 +84,18 @@
         {
             "loss_type": "mixed",
             "transducer": "bc",
-            "frequencies": ["3"or"4"],
+            "frequencies": ["3","4"],
             "condition": "greater than",
-            "limit": 0,
-            "at_or_above": 55,
-            "ear": "one ear if no values for other ear or both ears if both have values"
-            "result": "May be suitable for CI or BAHA may be more appropriate. Next step: test BC at both 3&4kHz to assess high frequency hearing.",
-            "reason": "If BC thesholds are at or above 55 dB at both 3&4kHz they may still be suitable for CI. If thresholds are better than this then BAHA may be more suitable."
+            "limit": 1,
+            "at_or_above": -1000,
+            "ear": "both",
+            "result": "Consider ENT/BAHA referral.",
+            "reason": "BC thresholds are too good for CI referral (the better ear has no more than 1 threshold at or above 55 dB). BAHA more suitable than CI."
         },
         {
             "loss_type": "mixed",
-            "result": "Consider ENT/BAHA referral.",
-            "reason": "BC thresholds are too good for CI referral (the better ear has no more than 1 threshold at or above 55 dB). BAHA more suitable than CI."
+            "result": "Logic here TBC",
+            "reason": "This tool is still under development"
         }
     ]
 }
