@@ -11,27 +11,38 @@
         "mixed": {
             "left": {
                 "ac": ["0.5","1","2","3","4"],
-                "bc": ["0.5","1","2","3","4"]
+                "bc": ["0.5","1","2"]
             },
             "right": {
                 "ac": ["0.5","1","2","3","4"],
-                "bc": ["0.5","1","2","3","4"]
+                "bc": ["0.5","1","2"]
             }
         }
     },
 
     "referral_rules": [
         {
-            "loss_type": "any",
+            "loss_type": "sensorineural",
             "transducer": "ac",
             "frequencies": ["0.5","1","2","3","4"],
             "condition": "less than",
             "limit": 2,
             "at_or_above": 80,
             "ear": "either",
-            "result": "Not suitable for CI unless dead regions suspected and AB speech test scores below 50%",
-            "reason": "NICE guidelines suggest at least two thresholds at 80 dB or above in both ears, for referral. See FAQs below for info on dead regions."
+            "result": "Not suitable for CI except in rare cases where outcomes with amplification are very poor.",
+            "reason": "NICE guidelines suggest at least two thresholds at 80 dB or above in both ears, for referral. See FAQs below for info on dead regions if aided outcomes are poor."
         },
+        {
+            "loss_type": "mixed",
+            "transducer": "ac",
+            "frequencies": ["0.5","1","2","3","4"],
+            "condition": "less than",
+            "limit": 2,
+            "at_or_above": 80,
+            "ear": "either",
+            "result": "Not suitable for CI except in rare cases where outcomes with amplification are very poor. Consider BAHA if BC is suitable.",
+            "reason": "NICE guidelines suggest at least two thresholds at 80 dB or above in both ears, for referral. See FAQs below for info on dead regions if aided outcomes are poor."
+        },     
         {
             "loss_type": "sensorineural",
             "transducer": "ac",
@@ -53,16 +64,27 @@
             "transducer": "bc",
             "frequencies": ["0.5","1","2","3","4"],
             "condition": "greater than",
+            "limit": "3",
+            "below": 55,
+            "ear": "either",
+            "result": "Consider ENT/BAHA referral.",
+            "reason": "BC thresholds are too good for CI referral (the better ear has more than 3 thresholds below 55 dB). BAHA more suitable than CI."
+        },
+        {
+            "loss_type": "mixed",
+            "transducer": "bc",
+            "frequencies": ["3","4"],
+            "condition": "greater than",
             "limit": 1,
-            "at_or_above": 55,
+            "at_or_above": -1000,
             "ear": "both",
             "result": "May be suitable for CI referral. Next step: AB speech test.",
             "reason": "Meets NICE criteria of at least two thresholds at 80 dB or above in both ears, and are unlikely to be suitable for a BAHA because BC thresholds are too poor (more than one threshold at or above 55 dB in both ears). However, they may be hearing speech well enough with hearing aids. Guidelines suggest using AB speech test."
         },
         {
             "loss_type": "mixed",
-            "result": "Consider ENT/BAHA referral.",
-            "reason": "BC thresholds are too good for CI referral (the better ear has no more than 1 threshold at or above 55 dB). BAHA more suitable than CI."
+            "result": "May be suitable for CI or BAHA may be more appropriate. Next step: test BC at both 3&4kHz in both ears to assess high frequency hearing.",
+            "reason": "If BC thesholds are at or above 55 dB at 3&4kHz they may still be suitable for CI. If thresholds are better than this then BAHA may be more suitable."
         }
     ]
 }
