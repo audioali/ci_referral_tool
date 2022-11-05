@@ -65,10 +65,10 @@
             "frequencies": ["0.5","1","2","3","4"],
             "condition": "greater than",
             "limit": "3",
-            "below": 55,
+            "below": 65,
             "ear": "either",
             "result": "Consider ENT/BAHA referral.",
-            "reason": "BC thresholds are too good for CI referral (the better ear has more than 3 thresholds below 55 dB). BAHA more suitable than CI."
+            "reason": "BC thresholds are too good for CI referral (the better ear has more than 3 thresholds below 65 dB). BAHA more suitable than CI."
         },
         {
             "loss_type": "mixed",
