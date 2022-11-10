@@ -1,5 +1,5 @@
 function validate_input(test_results) {
-    const limits = {ac: [-10,120], bc: [-10,70]};
+    const limits = {ac: [-10,120], bc: [-10,80]};
     const interval = 5;
 
     for (const ear of ['left','right']) {
