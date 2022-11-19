@@ -2,7 +2,7 @@
 // test_results[ear][type][freq] gives the threshold in the given ear ('left' or 'right'), of given type ('ac' or 'bc'), at given frequency (in khz, as string).
 
 function validate_input(test_results) {
-    const limits = {ac: [-10,120], bc: [-10,70]};
+    const limits = {ac: [-10,120], bc: [-10,80]};
     const interval = 5;
 
     for (const ear of ['left','right']) {
