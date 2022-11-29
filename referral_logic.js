@@ -1,3 +1,6 @@
+// Functions in this script take hearing test results as a nested object.
+// test_results[ear][type][freq] gives the threshold in the given ear ('left' or 'right'), of given type ('ac' or 'bc'), at given frequency (in khz, as string).
+
 function validate_input(test_results) {
     const limits = {ac: [-10,120], bc: [-10,80]};
     const interval = 5;
@@ -24,7 +27,7 @@ function validate_input(test_results) {
 
 function check_threshold_count(test_results, ear, type, freqs, threshold, at_or_above) {
     //For ear ('left' or 'right'), type ('ac' or 'bc'), freqs (list, kHz but as string), and a threshold (int, dB)
-    //this function returns how many of those frequencies are at the threshold or worse
+    //This function returns how many of those frequencies are at the threshold or worse (or better than threshold if at_or_above is false).
 
     let threshold_count = 0;
     for (const f of freqs) {
@@ -45,6 +48,7 @@ function check_threshold_count(test_results, ear, type, freqs, threshold, at_or_
     return threshold_count;
 }
 
+// Apply referral logic to test_results and return referral decision with reason
 function process_results(test_results, logic) {
     const validity = validate_input(test_results);
     if (!validity.valid) {
