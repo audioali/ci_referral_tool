@@ -30,7 +30,7 @@
             "at_or_above": 80,
             "ear": "either",
             "result": "Not suitable for CI except in rare cases where outcomes with amplification are very poor.",
-            "reason": "NICE guidelines suggest at least two thresholds at 80 dB or above in both ears, for referral. See FAQs below for info on dead regions if aided outcomes are poor."
+            "reason": "NICE guidelines suggest at least two thresholds at 80 dB or worse in both ears, for referral. See FAQs below for info on dead regions if aided outcomes are poor."
         },
         {
             "loss_type": "mixed",
@@ -40,8 +40,8 @@
             "limit": 2,
             "at_or_above": 80,
             "ear": "either",
-            "result": "Not suitable for CI except in rare cases where outcomes with amplification are very poor. Consider BAHA if BC is suitable.",
-            "reason": "NICE guidelines suggest at least two thresholds at 80 dB or above in both ears, for referral. See FAQs below for info on dead regions if aided outcomes are poor."
+            "result": "Not suitable for CI except in rare cases where outcomes with amplification are very poor. Consider bone anchored hearing device if BC is suitable.",
+            "reason": "NICE guidelines suggest at least two thresholds at 80 dB or worse in both ears, for referral. See FAQs below for info on dead regions if aided outcomes are poor."
         },     
         {
             "loss_type": "sensorineural",
@@ -52,12 +52,12 @@
             "at_or_above": 95,
             "ear": "both",
             "result": "Likely suitable for CI referral. If hearing without visual cues then consider AB speech test, if not consider CI referral.",
-            "reason": "Meets NICE criteria of at least two thresholds at 80 dB or above in both ears. Unlikely to score above 50% on an AB speech test given 2,3,4kHz thresholds are at 95 or above in both ears. However, if hearing well without visual cues, a speech test may be useful."
+            "reason": "Meets NICE criteria of at least two thresholds at 80 dB or worse in both ears. Unlikely to score above 50% on an AB speech test given 2,3,4kHz thresholds are at 95 or worse in both ears. However, if hearing well without visual cues, a speech test may be useful."
         },
         {
             "loss_type": "sensorineural",
             "result": "May be suitable for CI referral. Next step: AB speech test.",
-            "reason": "Meets NICE criteria of at least two thresholds at 80 dB or above in both ears. However, they may be hearing speech well enough with hearing aids. Guidelines suggest using AB speech test."
+            "reason": "Meets NICE criteria of at least two thresholds at 80 dB or worse in both ears. However, they may be hearing speech well enough with hearing aids. Guidelines suggest using AB speech test."
         },
         {
             "loss_type": "mixed",
@@ -67,8 +67,8 @@
             "limit": "3",
             "below": 65,
             "ear": "either",
-            "result": "Consider ENT/BAHA referral.",
-            "reason": "BC thresholds are too good for CI referral (the better ear has more than 3 thresholds below 65 dB). BAHA more suitable than CI."
+            "result": "Consider ENT/bone anchored hearing device referral.",
+            "reason": "BC thresholds are too good for CI referral (the better ear has more than 3 thresholds worse than 65 dB). Bone anchored hearing device more suitable than CI."
         },
         {
             "loss_type": "mixed",
@@ -79,12 +79,12 @@
             "at_or_above": -1000,
             "ear": "both",
             "result": "May be suitable for CI referral. Next step: AB speech test.",
-            "reason": "Meets NICE criteria of at least two thresholds at 80 dB or above in both ears, and are unlikely to be suitable for a BAHA because BC thresholds are too poor (more than one threshold at or above 55 dB in both ears). However, they may be hearing speech well enough with hearing aids. Guidelines suggest using AB speech test."
+            "reason": "Meets NICE criteria of at least two thresholds at 80 dB or worse in both ears, and are unlikely to be suitable for a bone anchored hearing device because BC thresholds are too poor (more than one threshold at or worse than 55 dB in both ears). However, they may be hearing speech well enough with hearing aids. Guidelines suggest using AB speech test."
         },
         {
             "loss_type": "mixed",
-            "result": "May be suitable for CI or BAHA may be more appropriate. Next step: test BC at both 3&4kHz in both ears to assess high frequency hearing.",
-            "reason": "If BC thesholds are at or above 55 dB at 3&4kHz they may still be suitable for CI. If thresholds are better than this then BAHA may be more suitable."
+            "result": "May be suitable for CI or bone anchored hearing device may be more appropriate. Next step: test BC at both 3&4kHz in both ears to assess high frequency hearing.",
+            "reason": "If BC thesholds are at or worse than 55 dB at 3&4kHz they may still be suitable for CI. If thresholds are better than this then a bone anchored hearing device may be more suitable."
         }
     ]
 }
