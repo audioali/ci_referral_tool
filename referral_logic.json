@@ -68,7 +68,7 @@
             "below": 65,
             "ear": "either",
             "result": "Consider ENT/bone anchored hearing device referral.",
-            "reason": "BC thresholds are too good for CI referral (the better ear has more than 3 thresholds worse than 65 dB). Bone anchored hearing device more suitable than CI."
+            "reason": "BC thresholds are too good for CI referral (the better ear has more than 3 thresholds better than 65 dB). Bone anchored hearing device more suitable than CI."
         },
         {
             "loss_type": "mixed",
@@ -83,8 +83,8 @@
         },
         {
             "loss_type": "mixed",
-            "result": "May be suitable for CI or bone anchored hearing device may be more appropriate. Next step: test BC at both 3&4kHz in both ears to assess high frequency hearing.",
-            "reason": "If BC thesholds are at or worse than 55 dB at 3&4kHz they may still be suitable for CI. If thresholds are better than this then a bone anchored hearing device may be more suitable."
+            "result": "May be suitable for CI or a bone anchored hearing device may be more appropriate. Next step: test BC at both 3&4kHz in both ears to assess high frequency hearing.",
+            "reason": "If BC thesholds are at or worse than 65 dB at 3&4kHz they may still be suitable for CI. If thresholds are better than this then a bone anchored hearing device may be more suitable."
         }
     ]
 }
