@@ -83,7 +83,7 @@ function generate_table() {
         col_header.textContent = f + " kHz";
         table_header.appendChild(col_header);
     }
-    for (const ear of ['left','right']) {
+    for (const ear of ['right','left']) {
         for (const type of ['ac','bc']) {
             const new_row = document.createElement("tr");
             const row_title = document.createElement("td");
