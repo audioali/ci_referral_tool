@@ -29,7 +29,7 @@
             "limit": 2,
             "at_or_above": 80,
             "ear": "either",
-            "result": "Not suitable for CI except in rare cases where outcomes with amplification are very poor.",
+            "result": "Not yet suitable for CI except in rare cases where outcomes with amplification are very poor.",
             "reason": "NICE guidelines suggest at least two thresholds at 80 dB or above in both ears, for referral. See FAQs below for info on dead regions if aided outcomes are poor."
         },
         {
@@ -40,7 +40,7 @@
             "limit": 2,
             "at_or_above": 80,
             "ear": "either",
-            "result": "Not suitable for CI except in rare cases where outcomes with amplification are very poor. Consider BAHA if BC is suitable.",
+            "result": "Not yet suitable for CI except in rare cases where outcomes with amplification are very poor. Consider BAHA if BC is suitable.",
             "reason": "NICE guidelines suggest at least two thresholds at 80 dB or above in both ears, for referral. See FAQs below for info on dead regions if aided outcomes are poor."
         },     
         {
