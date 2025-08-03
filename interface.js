@@ -26,7 +26,7 @@ async function compute_recommendation() {
         test_results.loss_type = document.getElementById('loss_type').value;
         const referral_logic = await referral_logic_query;
         const decision = process_results(test_results, referral_logic);
-        output_msg.textContent = decision[0];
+        output_msg.innerHTML = decision[0];
         reason = ''; //To ensure old reason is wiped as soon as decision changes
         if (decision.length > 1) {
             reason = decision[1];
