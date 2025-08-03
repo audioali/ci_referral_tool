@@ -40,7 +40,7 @@
             "limit": 2,
             "at_or_above": 80,
             "ear": "either",
-            "result": "Not yet suitable for CI except in rare cases where outcomes with amplification are very poor, but consider keeping under review as close to meeting criteria.",
+            "result": "Not yet suitable for CI except in rare cases where outcomes with amplification are very poor according to current criteria. Consider keeping under review. May be suitable for the <a href='https://www.coachtrial.ac.uk/home.aspx'>COACH trial</a>.",
             "reason": "NICE guidelines suggest at least two thresholds at 80 dB or worse in both ears, for referral. They are close to this threshold. Monitoring may mean discussion can take place as soon as possible when/if they do reach criteria. See FAQs below for info on dead regions if aided outcomes are poor."
         },
         {
