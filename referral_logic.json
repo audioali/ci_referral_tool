@@ -27,7 +27,7 @@
             "frequencies": ["0.5","1","2","3","4"],
             "condition": "less than",
             "limit": 2,
-            "at_or_above": 75,
+            "at_or_above": 70,
             "ear": "either",
             "result": "Not yet suitable for CI except in rare cases where outcomes with amplification are very poor.",
             "reason": "NICE guidelines suggest at least two thresholds at 80 dB or above in both ears, for referral. See FAQs below for info on dead regions if aided outcomes are poor."
